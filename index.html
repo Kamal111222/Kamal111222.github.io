@@ -4,288 +4,314 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kamal Singh | Data Analyst Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* --- PROFESSIONAL COLOR PALETTE --- */
         :root {
-            --bg-dark: #0f172a;       /* Deep Navy Background */
-            --bg-card: #1e293b;       /* Lighter Slate for Cards */
-            --accent: #10b981;        /* Emerald Green (Success/Growth) */
-            --text-main: #f1f5f9;     /* Off-white */
-            --text-dim: #94a3b8;      /* Muted Slate */
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --bg: #050810;
+            --card-bg: #0f172a;
+            --accent: #3b82f6; /* Azure Blue */
+            --accent-glow: rgba(59, 130, 246, 0.3);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --emerald: #10b981;
+            --border: rgba(255, 255, 255, 0.08);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
+            background-color: var(--bg);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* --- ANIMATIONS --- */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Background Grid Effect */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            mask-image: radial-gradient(circle at 50% 50%, black, transparent);
         }
 
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 10%;
+            background: rgba(5, 8, 16, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+        .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--accent); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-secondary); font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* Hero Section */
+        #home {
+            height: 100vh;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 10%;
+            position: relative;
         }
 
+        .hero-text h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+        .hero-text span.name {
+            background: linear-gradient(90deg, var(--accent), #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-desc { color: var(--text-secondary); max-width: 500px; margin-bottom: 2rem; font-size: 1.1rem; }
+
+        /* GitHub Photo Animation */
+        .photo-container {
+            position: relative;
+            width: 350px; height: 350px;
+            animation: float 6s ease-in-out infinite;
+        }
+        .photo-container img {
+            width: 100%; height: 100%;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+            box-shadow: 0 0 50px var(--accent-glow);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        /* Section Reveal Animation */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: var(--transition);
-            transition-duration: 0.8s;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
         }
-
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* --- LAYOUT --- */
-        header {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
-        }
+        /* General Section Styling */
+        section { padding: 100px 10%; }
+        .label { color: var(--accent); text-transform: uppercase; font-weight: 700; letter-spacing: 2px; font-size: 0.8rem; margin-bottom: 1rem; display: block; }
+        h2 { font-family: 'Syne', sans-serif; font-size: 2.5rem; margin-bottom: 3rem; }
 
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-main);
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            color: var(--accent);
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 2rem;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            padding: 12px 28px;
-            background-color: var(--accent);
-            color: var(--bg-dark);
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 6px;
-            transition: var(--transition);
-        }
-
-        .btn-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
-        }
-
-        section {
-            padding: 80px 10%;
-        }
-
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            border-bottom: 2px solid var(--accent);
-            display: inline-block;
-        }
-
-        /* --- SKILLS GRID --- */
-        .skills-grid {
+        /* Stats Grid */
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px; margin-top: 2rem;
         }
-
-        .skill-card {
-            background: var(--bg-card);
-            padding: 30px;
-            border-radius: 12px;
+        .stat-card {
+            background: var(--card-bg);
+            padding: 20px; border-radius: 12px;
+            border: 1px solid var(--border);
             text-align: center;
-            transition: var(--transition);
-            border: 1px solid rgba(255,255,255,0.05);
         }
+        .stat-card h3 { color: var(--accent); font-size: 2rem; margin-bottom: 5px; }
 
-        .skill-card:hover {
-            transform: translateY(-10px);
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        .skill-box {
+            background: var(--card-bg);
+            padding: 30px; border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: 0.4s;
+        }
+        .skill-box:hover {
             border-color: var(--accent);
+            transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-
-        .skill-card i {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 15px;
-        }
-
-        /* --- PROJECT CARDS --- */
-        .project-card {
-            background: var(--bg-card);
-            margin-bottom: 30px;
-            padding: 40px;
-            border-radius: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            transition: var(--transition);
-        }
-
-        .project-card:hover {
-            background: #273549;
-        }
-
-        .tag-container {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
         .tag {
-            background: rgba(16, 185, 129, 0.1);
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.1);
             color: var(--accent);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            border: 1px solid var(--accent);
+            padding: 4px 12px; border-radius: 20px;
+            font-size: 0.75rem; margin: 4px;
+            border: 1px solid var(--accent-glow);
         }
 
-        /* --- CONTACT --- */
-        .contact-container {
-            text-align: center;
-            background: var(--bg-card);
-            padding: 50px;
-            border-radius: 20px;
+        /* Projects */
+        .project-card {
+            background: var(--card-bg);
+            padding: 40px; border-radius: 20px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--accent);
+            transition: 0.3s;
         }
+        .project-card:hover { background: #1e293b; }
+        .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .status { font-size: 0.7rem; font-weight: 700; color: var(--emerald); border: 1px solid var(--emerald); padding: 2px 8px; border-radius: 4px; }
 
-        footer {
-            text-align: center;
-            padding: 40px;
-            color: var(--text-dim);
-            font-size: 0.9rem;
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            cursor: pointer;
         }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-primary:hover { box-shadow: 0 0 25px var(--accent-glow); transform: translateY(-2px); }
 
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.5rem; }
+        /* Responsive */
+        @media (max-width: 900px) {
+            #home { flex-direction: column-reverse; text-align: center; justify-content: center; height: auto; padding-top: 120px; }
+            .hero-text h1 { font-size: 2.8rem; }
+            .photo-container { width: 250px; height: 250px; margin-bottom: 40px; }
             section { padding: 60px 5%; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="hero-content" style="animation: fadeInUp 1s ease-out;">
-            <h1>Kamal Singh</h1>
-            <p>DATA ANALYST | SQL | PYTHON | POWER BI</p>
-            <div style="margin-top: 20px;">
-                <a href="#projects" class="btn-primary">View My Work</a>
+    <div class="bg-grid"></div>
+
+    <nav>
+        <div class="logo">KAMAL.S</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <div class="hero-text">
+            <span class="label" style="color: var(--emerald);">● Open to Remote Roles</span>
+            <h1>Hi, I'm <br><span class="name">Kamal Singh</span></h1>
+            <p class="hero-desc">Aspiring Data Analyst specialized in turning complex datasets into clear business insights. Skilled in SQL, Python, and Power BI.</p>
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <a href="#projects" class="btn btn-primary">Explore Work</a>
+                <a href="https://linkedin.com/in/kamal-singh-2941ab329" target="_blank" class="btn" style="border: 1px solid var(--border); color: white;">LinkedIn</a>
             </div>
         </div>
-    </header>
+        <div class="photo-container">
+            <img src="https://github.com/Kamal111222.png" alt="Kamal Singh">
+        </div>
+    </section>
 
     <section id="about" class="reveal">
-        <h2>About Me</h2>
-        <p style="font-size: 1.1rem; color: var(--text-dim); max-width: 800px;">
-            I am a Data Analyst driven by curiosity and structured thinking. With a background in 
-            <strong>Applied Business Economics (M.Com)</strong> and 5 years of <strong>UPSC Civil Services research</strong>, 
-            I bring a unique ability to synthesize complex data into actionable business reports. 
-            Currently sharpening my technical stack at Intellipaat.
-        </p>
+        <span class="label">The Journey</span>
+        <h2>Researcher by Training,<br>Analyst by Choice</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+            <div>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">
+                    Currently pursuing a <strong>Data Analytics certification from Intellipaat</strong>. My unique edge comes from 5 years of rigorous UPSC research, which refined my ability to synthesize massive information into structured reports.
+                </p>
+                <p style="color: var(--text-secondary);">
+                    I also managed a stock market community, where I translated geopolitical events into technical share analysis for local investors.
+                </p>
+                <div class="stats-grid">
+                    <div class="stat-card"><h3>4+</h3><p>Tools</p></div>
+                    <div class="stat-card"><h3>2+</h3><p>Projects</p></div>
+                    <div class="stat-card"><h3>5yr</h3><p>Research</p></div>
+                </div>
+            </div>
+            <div style="background: var(--card-bg); padding: 30px; border-radius: 16px; border: 1px solid var(--border);">
+                <h4 style="margin-bottom: 15px; color: var(--accent);">🎓 Education</h4>
+                <p><strong>M.Com (Applied Economics)</strong><br>DBRA University, Agra (2018-2020)</p>
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
+                <h4 style="margin-bottom: 15px; color: var(--accent);">📍 Location</h4>
+                <p>Agra, India (Remote Ready)</p>
+            </div>
+        </div>
     </section>
 
     <section id="skills" class="reveal">
-        <h2>Technical Toolkit</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <h3>SQL</h3>
-                <p>Joins, Subqueries, Stored Procedures</p>
-            </div>
-            <div class="skill-card">
+        <span class="label">Core Stack</span>
+        <h2>Technical Expertise</h2>
+        <div class="skills-container">
+            <div class="skill-box">
+                <div style="font-size: 2rem; margin-bottom: 15px;">🐍</div>
                 <h3>Python</h3>
-                <p>Pandas, NumPy, Plotly, EDA</p>
+                <div class="tag">Pandas</div><div class="tag">NumPy</div><div class="tag">Plotly</div><div class="tag">EDA</div>
             </div>
-            <div class="skill-card">
-                <h3>Power BI</h3>
-                <p>DAX, Interactive Dashboards, KPI Cards</p>
+            <div class="skill-box">
+                <div style="font-size: 2rem; margin-bottom: 15px;">🗄️</div>
+                <h3>SQL</h3>
+                <div class="tag">MS SQL Server</div><div class="tag">Window Functions</div><div class="tag">Stored Procedures</div>
             </div>
-            <div class="skill-card">
-                <h3>Excel</h3>
-                <p>Pivot Tables, VLOOKUP, Power Query</p>
+            <div class="skill-box">
+                <div style="font-size: 2rem; margin-bottom: 15px;">📊</div>
+                <h3>Visualization</h3>
+                <div class="tag">Power BI</div><div class="tag">DAX</div><div class="tag">Excel (VLOOKUP/Pivot)</div>
             </div>
         </div>
     </section>
 
-    <section id="projects">
-        <h2 class="reveal">Featured Projects</h2>
+    <section id="projects" class="reveal">
+        <span class="label">Work Portfolio</span>
+        <h2>Real World Analysis</h2>
         
-        <div class="project-card reveal">
-            <h3>Superstore Sales Analysis — EDA</h3>
-            <p>End-to-end Exploratory Data Analysis on 10,000+ rows. Cleaned data using Pandas and created interactive visualizations to uncover profit patterns.</p>
-            <div class="tag-container">
-                <span class="tag">Python</span>
-                <span class="tag">Pandas</span>
-                <span class="tag">Plotly</span>
+        <div class="project-card">
+            <div class="project-header">
+                <h3>Superstore Sales Analysis (EDA)</h3>
+                <span class="status">LIVE ON GITHUB</span>
             </div>
-            <a href="https://github.com/Kamal111222/superstore-sales-analysis" style="color: var(--accent); text-decoration: none; font-weight: 600;">View on GitHub ↗</a>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">Analyzed 10,000+ rows of Kaggle data using Python. Performed cleaning and created interactive Plotly charts to reveal profit trends across US regions.</p>
+            <div style="margin-bottom: 20px;"><span class="tag">Python</span><span class="tag">Plotly</span><span class="tag">Data Cleaning</span></div>
+            <a href="https://github.com/Kamal111222/superstore-sales-analysis" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 700;">View Repository ↗</a>
         </div>
 
-        <div class="project-card reveal">
-            <h3>Retail Product Sales Analysis — SQL</h3>
-            <p>Analyzed beverage sales across US states. Wrote 29 complex queries using Window Functions, Stored Procedures, and UDFs.</p>
-            <div class="tag-container">
-                <span class="tag">MS SQL Server</span>
-                <span class="tag">Window Functions</span>
-                <span class="tag">Business Intelligence</span>
+        <div class="project-card">
+            <div class="project-header">
+                <h3>Retail Sales SQL Case Study</h3>
+                <span class="status">COMPLETED</span>
             </div>
-        </div>
-    </section>
-
-    <section id="contact" class="reveal">
-        <div class="contact-container">
-            <h2>Let's Connect</h2>
-            <p>Open to Remote Data Analyst & Business Analyst roles.</p>
-            <div style="margin-top: 30px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                <a href="mailto:kamal.yadav902k@gmail.com" class="btn-primary">Email Me</a>
-                <a href="https://linkedin.com/in/kamal-singh-2941ab329" class="btn-primary" style="background: transparent; border: 2px solid var(--accent); color: var(--accent);">LinkedIn</a>
-            </div>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">Relational database analysis across 3 tables. Developed 29 complex queries using DENSE_RANK, ROLLUP, and Transaction-safe operations.</p>
+            <div style="margin-bottom: 20px;"><span class="tag">SQL</span><span class="tag">Joins</span><span class="tag">Analytics</span></div>
+            <a href="https://github.com/Kamal111222" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 700;">GitHub Profile ↗</a>
         </div>
     </section>
 
-    <footer>
-        © 2026 Kamal Singh · Agra, India · Data Analysis Portfolio
+    <section id="contact" class="reveal" style="text-align: center;">
+        <span class="label">Let's Talk</span>
+        <h2>Available for Remote Hires</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 40px;">Currently looking for Fresher Data Analyst or Business Analyst roles.</p>
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+            <a href="mailto:kamal.yadav902k@gmail.com" class="btn btn-primary">✉ Email Me</a>
+            <a href="tel:+917830493360" class="btn" style="border: 1px solid var(--border); color: white;">📞 +91-7830493360</a>
+        </div>
+    </section>
+
+    <footer style="padding: 40px 10%; border-top: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 0.8rem;">
+        © 2026 Kamal Singh • Data Analyst Portfolio • Built with modern HTML/CSS
     </footer>
 
     <script>
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
                 }
-            }
-        }
+            });
+        }, observerOptions);
 
-        window.addEventListener("scroll", reveal);
-        // To trigger on load
-        reveal();
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
