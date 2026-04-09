@@ -198,6 +198,10 @@ section {
   font-size: 0; font-weight: 800; color: var(--teal);
   letter-spacing: 1px; overflow: hidden;
 }
+.av-inner img {
+  width: 100%; height: 100%;
+  border-radius: 50%; object-fit: cover;
+}
 .orbit {
   position: absolute; width: 100%; height: 100%;
   animation: spinOrbit 5s linear infinite;
@@ -419,9 +423,7 @@ footer {
     <div class="av-ring">
       <div class="orbit"><div class="orbit-dot"></div></div>
       <div class="av-inner">
-        <img src="https://github.com/Kamal111222.png"
-             alt="Kamal Singh"
-             style="width:100%;height:100%;border-radius:50%;object-fit:cover;">
+        <img src="https://github.com/Kamal111222.png" alt="Kamal Singh">
       </div>
     </div>
   </div>
@@ -593,7 +595,7 @@ footer {
   <div class="sec-sub reveal">Open to remote data analyst, business analyst and data entry roles. Feel free to reach out!</div>
 
   <div class="contact-grid">
-    <a href="/cdn-cgi/l/email-protection#610a000c000d4f18000500175851530a21060c00080d4f020e0c" class="c-card reveal d1">
+    <a href="/cdn-cgi/l/email-protection#c7aca6aaa6abe9bea6a3a6b1fef7f5ac87a0aaa6aeabe9a4a8aa" class="c-card reveal d1">
       <div class="c-icon">✉️</div>
       <div class="c-lbl">Email</div>
       <div class="c-val">Gmail</div>
@@ -698,20 +700,26 @@ footer {
 /* ══ COUNTER ═══════════════════════════════════════════════ */
 (function(){
   var els=document.querySelectorAll('.stat-num[data-to]');
-  function runCounters(){
-    els.forEach(function(el){
-      var target=+el.getAttribute('data-to');
-      var suffix=el.getAttribute('data-suffix')||'+';
-      var cur=0, step=target/45;
-      var t=setInterval(function(){
-        cur=Math.min(cur+step,target);
-        el.textContent=Math.round(cur)+suffix;
-        if(cur>=target)clearInterval(t);
-      },35);
-    });
+  var done=false;
+  function run(){
+    if(done)return;
+    var hero=document.getElementById('home');
+    if(hero.getBoundingClientRect().top < window.innerHeight){
+      done=true;
+      els.forEach(function(el){
+        var target=+el.getAttribute('data-to');
+        var suffix=el.getAttribute('data-suffix')||'+';
+        var cur=0, step=target/45;
+        var t=setInterval(function(){
+          cur=Math.min(cur+step,target);
+          el.textContent=Math.round(cur)+suffix;
+          if(cur>=target)clearInterval(t);
+        },35);
+      });
+    }
   }
-  window.addEventListener('load', function(){ setTimeout(runCounters, 600); });
-  setTimeout(runCounters, 900);
+  window.addEventListener('scroll',run);
+  setTimeout(run,800);
 })();
 
 /* ══ SCROLL REVEAL ═════════════════════════════════════════ */
