@@ -52,7 +52,7 @@ Technical Analysis
 Data-driven investment strategies
 📬 Let's Connect!
 
-I am actively seeking Remote Data Analyst or Business Analyst opportunities
+I am actively seeking Data Analyst or Business Analyst opportunities
 
 💼 LinkedIn: Kamal Singh
 📧 Email: kamal.yadav902k@gmail.com
