@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kamal Singh | Data Analyst</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-deep: #030712;
             --bg-surface: #111827;
+            --card-bg: #151d2d; /* Matched to your screenshot */
             --accent-primary: #3b82f6; /* Blue */
             --accent-secondary: #8b5cf6; /* Purple */
+            --icon-color: #c4b5fd; /* Soft lavender for icons */
             --text-light: #f9fafb;
             --text-muted: #9ca3af;
             --glow: rgba(59, 130, 246, 0.4);
+            --glow-purple: rgba(139, 92, 246, 0.3);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,7 +27,7 @@
         .bg-animation { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; }
         .node { position: absolute; background: radial-gradient(circle, var(--glow) 0%, transparent 70%); border-radius: 50%; opacity: 0.5; animation: floatNode 20s infinite alternate ease-in-out; }
         .node:nth-child(1) { width: 400px; height: 400px; top: -100px; left: -100px; animation-delay: 0s; }
-        .node:nth-child(2) { width: 600px; height: 600px; bottom: -200px; right: -100px; background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%); animation-delay: -5s; }
+        .node:nth-child(2) { width: 600px; height: 600px; bottom: -200px; right: -100px; background: radial-gradient(circle, var(--glow-purple) 0%, transparent 70%); animation-delay: -5s; }
         @keyframes floatNode { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(50px, 50px) scale(1.1); } }
 
         /* Navbar */
@@ -46,7 +49,6 @@
         .hero-content { flex: 1; }
         .status-badge { display: inline-block; padding: 8px 16px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981; border-radius: 30px; font-size: 0.9rem; margin-bottom: 20px; animation: slideDown 1s ease forwards; opacity: 0; }
         
-        /* Typing Animation */
         .typewriter-box { display: inline-block; overflow: hidden; white-space: nowrap; border-right: 3px solid var(--accent-primary); animation: typing 2.5s steps(30, end), blink 0.75s step-end infinite; }
         .hero-title { font-size: 4.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
         .hero-desc { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 30px; max-width: 500px; animation: slideUp 1s ease 1s forwards; opacity: 0; }
@@ -62,18 +64,81 @@
         .btn-outline { border: 1px solid var(--text-muted); color: var(--text-light); background: transparent; }
         .btn-outline:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
 
-        /* About / Background */
+        /* About */
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
         .glass-panel { background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); padding: 40px; border-radius: 20px; transition: transform 0.3s; }
         .glass-panel:hover { transform: translateY(-5px); border-color: rgba(59, 130, 246, 0.3); }
 
-        /* Skills */
-        .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; }
-        .skill-card { background: var(--bg-surface); padding: 30px; border-radius: 16px; border-bottom: 3px solid transparent; transition: all 0.4s; }
-        .skill-card:hover { border-bottom: 3px solid var(--accent-primary); transform: translateY(-10px); background: #1f2937; }
-        .skill-card h3 { font-size: 1.4rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        .tag-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
-        .tag { background: rgba(59, 130, 246, 0.1); color: #93c5fd; padding: 6px 14px; border-radius: 6px; font-size: 0.85rem; border: 1px solid rgba(59, 130, 246, 0.2); }
+        /* === NEW SKILLS GRID SECTIONS (SCREENSHOT MATCH) === */
+        .skills-grid { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 20px; 
+            max-width: 900px; 
+            margin: 0 auto; 
+        }
+        
+        .skill-icon-card { 
+            background: var(--card-bg); 
+            border-radius: 20px; 
+            width: 140px; 
+            height: 140px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            border: 1px solid transparent; 
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+        }
+
+        .skill-icon-card svg {
+            width: 50px;
+            height: 50px;
+            fill: var(--icon-color);
+            margin-bottom: 12px;
+            transition: all 0.4s ease;
+        }
+
+        .skill-icon-card span.skill-name {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-light);
+            transition: all 0.4s ease;
+        }
+
+        /* Hover Glow Effect matching image */
+        .skill-icon-card:hover {
+            border-color: rgba(139, 92, 246, 0.6);
+            background: rgba(139, 92, 246, 0.05);
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.15), inset 0 0 10px rgba(139, 92, 246, 0.1);
+            transform: translateY(-8px);
+        }
+
+        .skill-icon-card:hover svg {
+            fill: #fff;
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.4));
+        }
+
+        .skill-icon-card:hover span.skill-name {
+            color: #fff;
+        }
+
+        /* Tiny sub-text for libraries to keep keywords for HR */
+        .skill-subtext {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            opacity: 0;
+            transform: translateY(5px);
+            transition: all 0.3s ease;
+            position: absolute;
+            bottom: 15px;
+        }
+        
+        .skill-icon-card:hover .skill-name { transform: translateY(-5px); }
+        .skill-icon-card:hover .skill-subtext { opacity: 1; transform: translateY(0); }
 
         /* Projects */
         .project-card { display: flex; flex-direction: column; background: var(--bg-surface); border-radius: 20px; overflow: hidden; margin-bottom: 40px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s; }
@@ -81,8 +146,9 @@
         .project-content { padding: 40px; }
         .project-status { font-size: 0.75rem; font-weight: 800; letter-spacing: 1px; color: var(--accent-primary); margin-bottom: 10px; display: block; }
         .project-card h3 { font-size: 1.8rem; margin-bottom: 15px; }
+        .tag { background: rgba(59, 130, 246, 0.1); color: #93c5fd; padding: 6px 14px; border-radius: 6px; font-size: 0.85rem; border: 1px solid rgba(59, 130, 246, 0.2); margin-right: 8px;}
 
-        /* Modal / Popup Styles */
+        /* Modal / Popup */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(8px); z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
         .modal-content { position: relative; width: 90%; max-width: 420px; transform: translateY(20px); transition: transform 0.3s ease; }
@@ -91,50 +157,10 @@
         .close-modal:hover { color: var(--text-light); }
         .contact-links-grid { display: flex; flex-direction: column; gap: 15px; margin-top: 10px; }
         
-        /* * UPGRADED CONTACT CARDS (HOVER ANIMATION & LIGHT WORK)
-         */
-        .contact-card { 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-            padding: 15px 20px; 
-            background: rgba(255, 255, 255, 0.03); 
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-            border-radius: 12px; 
-            color: var(--text-light); 
-            text-decoration: none; 
-            position: relative;
-            overflow: hidden;
-            /* Smooth spring-like transition for the pop-out effect */
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
-        }
-        
-        /* The "Glass Reflection" Light Sweep */
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: skewX(-20deg);
-            transition: all 0.5s ease;
-        }
-
-        .contact-card:hover::before {
-            left: 150%;
-        }
-
-        /* The "Coming Forward" and "Glow" Effect */
-        .contact-card:hover { 
-            background: rgba(59, 130, 246, 0.1); 
-            border-color: var(--accent-primary); 
-            transform: translateY(-5px) scale(1.03); /* Pops forward and up */
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(59, 130, 246, 0.3); /* Professional light glow */
-            z-index: 10;
-        }
-        
+        .contact-card { display: flex; align-items: center; gap: 15px; padding: 15px 20px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; color: var(--text-light); text-decoration: none; position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .contact-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent); transform: skewX(-20deg); transition: all 0.5s ease; }
+        .contact-card:hover::before { left: 150%; }
+        .contact-card:hover { background: rgba(59, 130, 246, 0.1); border-color: var(--accent-primary); transform: translateY(-5px) scale(1.03); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(59, 130, 246, 0.3); z-index: 10; }
         .contact-icon { font-size: 1.5rem; }
 
         /* Animations */
@@ -145,7 +171,6 @@
         @keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         @keyframes morph { 0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; } }
 
-        /* Scroll Reveal Classes */
         .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -251,32 +276,48 @@
     <section id="skills">
         <div class="section-header reveal">
             <h2 class="section-title">Technical <span class="gradient-text">Toolkit</span></h2>
+            <p style="color: var(--text-muted);">Hover to view specific libraries & functions.</p>
         </div>
         
-        <div class="skills-container">
-            <div class="skill-card reveal">
-                <h3>🐍 Python Analytics</h3>
-                <div class="tag-wrap">
-                    <span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Plotly</span><span class="tag">Data Cleaning</span>
-                </div>
+        <div class="skills-grid">
+            <div class="skill-icon-card reveal">
+                <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4 .1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8 .1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3 0-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/>
+                </svg>
+                <span class="skill-name">Python</span>
+                <span class="skill-subtext">Pandas, NumPy, Plotly</span>
             </div>
-            <div class="skill-card reveal" style="transition-delay: 0.1s;">
-                <h3>🗄️ Database Management</h3>
-                <div class="tag-wrap">
-                    <span class="tag">MS SQL Server</span><span class="tag">Window Functions</span><span class="tag">Stored Procedures</span>
-                </div>
+
+            <div class="skill-icon-card reveal" style="transition-delay: 0.1s;">
+                <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M448 80v48c0 44.2-100.3 80-224 80S0 172.2 0 128V80C0 35.8 100.3 0 224 0S448 35.8 448 80zM393.2 214.7c20.8-7.4 39.9-16.9 54.8-28.6V288c0 44.2-100.3 80-224 80S0 332.2 0 288V186.1c14.9 11.8 34 21.2 54.8 28.6C99.7 230.7 159.5 240 224 240s124.3-9.3 169.2-25.3zM0 346.1c14.9 11.8 34 21.2 54.8 28.6C99.7 390.7 159.5 400 224 400s124.3-9.3 169.2-25.3c20.8-7.4 39.9-16.9 54.8-28.6V432c0 44.2-100.3 80-224 80S0 476.2 0 432V346.1z"/>
+                </svg>
+                <span class="skill-name">SQL</span>
+                <span class="skill-subtext">JOINs, Window Funcs</span>
             </div>
-            <div class="skill-card reveal" style="transition-delay: 0.2s;">
-                <h3>📊 Business Intelligence</h3>
-                <div class="tag-wrap">
-                    <span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Advanced Excel</span><span class="tag">Pivot Tables</span>
-                </div>
+
+            <div class="skill-icon-card reveal" style="transition-delay: 0.2s;">
+                <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-9.6 0-18.2-3.8-24.6-10c-6-6.1-9.4-14.4-9.4-22V64zM192 160c-17.7 0-32 14.3-32 32V352c0 17.7 14.3 32 32 32s32-14.3 32-32V192c0-17.7-14.3-32-32-32zm128-64c-17.7 0-32 14.3-32 32V352c0 17.7 14.3 32 32 32s32-14.3 32-32V128c0-17.7-14.3-32-32-32zm128-64c-17.7 0-32 14.3-32 32V352c0 17.7 14.3 32 32 32s32-14.3 32-32V64c0-17.7-14.3-32-32-32z"/>
+                </svg>
+                <span class="skill-name">Power BI</span>
+                <span class="skill-subtext">DAX, Storytelling</span>
             </div>
-            <div class="skill-card reveal" style="transition-delay: 0.3s;">
-                <h3>🧠 Strategic Analysis</h3>
-                <div class="tag-wrap">
-                    <span class="tag">Market Research</span><span class="tag">Financial Trends</span><span class="tag">Report Synthesis</span>
-                </div>
+
+            <div class="skill-icon-card reveal" style="transition-delay: 0.3s;">
+                <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM155.7 250.2L192 302.1l36.3-51.9c7.6-10.9 22.6-13.5 33.4-5.9s13.5 22.6 5.9 33.4L221.3 344l46.4 66.2c7.6 10.9 5 25.8-5.9 33.4s-25.8 5-33.4-5.9L192 385.8l-36.3 51.9c-7.6 10.9-22.6 13.5-33.4 5.9s-13.5-22.6-5.9-33.4L162.7 344l-46.4-66.2c-7.6-10.9-5-25.8 5.9-33.4s25.8-5 33.4 5.9z"/>
+                </svg>
+                <span class="skill-name">MS Excel</span>
+                <span class="skill-subtext">Pivot Tables, VLOOKUP</span>
+            </div>
+
+            <div class="skill-icon-card reveal" style="transition-delay: 0.4s;">
+                <svg viewBox="0 0 496 512" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/>
+                </svg>
+                <span class="skill-name">GitHub</span>
+                <span class="skill-subtext">Version Control</span>
             </div>
         </div>
     </section>
